@@ -12,9 +12,9 @@ namespace Consultorio.Controllers
     [Route("api/[controller]")]
     public class AgendamentoController : ControllerBase
     {
-
+        private readonly IEmailService _emailService;
         List<Agendamento> agendamentos = new List<Agendamento>();
-        public AgendamentoController()
+        public AgendamentoController(IEmailService emailService)
         {
             agendamentos.Add(new Agendamento 
             { 
@@ -22,6 +22,7 @@ namespace Consultorio.Controllers
                 NomePaciente = "Cientista", 
                 Horario = new DateTime(2022, 01, 21) 
             });
+            _emailService = emailService;
         }
 
         [HttpGet]
@@ -45,11 +46,10 @@ namespace Consultorio.Controllers
         IActionResult Post()
         {
             var pacienteAgendado = true;
-            EmailService emailService = new EmailService();
 
             if (pacienteAgendado)
             {
-                emailService.EnviarEmail("cientista@gmail.com");
+                _emailService.EnviarEmail("cientista@gmail.com");
             }
             return Ok();
         }

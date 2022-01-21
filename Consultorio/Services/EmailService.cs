@@ -1,10 +1,10 @@
 ﻿namespace Consultorio.Services
 {
-    public class EmailService
+    public class EmailService : IEmailService
     {
-       public void EnviarEmail(string email)
+        public void EnviarEmail(string email)
         {
-
+            throw new System.NotImplementedException();
         }
     }
 }
