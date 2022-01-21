@@ -1,4 +1,5 @@
 ﻿using Consultorio.Models.Entities;
+using Consultorio.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -38,6 +39,19 @@ namespace Consultorio.Controllers
             return buscaSeleccionado != null
                 ? Ok(agendamentos)
                 : BadRequest("Erro ao buscar Agendamento");
+        }
+
+        [HttpPost]
+        IActionResult Post()
+        {
+            var pacienteAgendado = true;
+            EmailService emailService = new EmailService();
+
+            if (pacienteAgendado)
+            {
+                emailService.EnviarEmail("cientista@gmail.com");
+            }
+            return Ok();
         }
     }
 }
